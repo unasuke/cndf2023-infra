@@ -1,9 +1,9 @@
 # Activate and configure extensions
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
-activate :autoprefixer do |prefix|
-  prefix.browsers = "last 2 versions"
-end
+# activate :autoprefixer do |prefix|
+#   prefix.browsers = "last 2 versions"
+# end
 
 # Layouts
 # https://middlemanapp.com/basics/layouts/
@@ -44,3 +44,8 @@ page '/*.txt', layout: false
 #   activate :minify_css
 #   activate :minify_javascript
 # end
+
+activate :external_pipeline,
+  name: :tailwindcss,
+  command: build? ? 'npm run build' : 'npm run watch',
+  source: './dist/'

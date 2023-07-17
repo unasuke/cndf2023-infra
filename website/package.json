@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "tailwindcss -i ./source/stylesheets/site.css -o ./dist/stylesheets/site.css",
+    "watch": "tailwindcss -i ./source/stylesheets/site.css -o ./dist/stylesheets/site.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}
