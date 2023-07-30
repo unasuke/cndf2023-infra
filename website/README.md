@@ -16,6 +16,16 @@ $ bundle exec middleman build
 
 ## Deploy
 
+### Amazon S3 bucket
+
+Prerequirement: AWS CLI
+
+```shell
+# in this directory
+$ bundle exec middleman build
+$ aws s3 sync build/ s3://your-bucket-name [--dryrun]
+```
+
 ### Firebase Hosting
 
 ```shell
