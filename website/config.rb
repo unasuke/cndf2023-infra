@@ -45,6 +45,8 @@ page '/*.txt', layout: false
 #   activate :minify_javascript
 # end
 
+ignore "**/.keep"
+
 activate :external_pipeline,
   name: :tailwindcss,
   command: build? ? 'npm run build' : 'npm run watch',
