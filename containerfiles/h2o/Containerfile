@@ -13,7 +13,7 @@ RUN make
 RUN make install
 
 FROM debian:bookworm
-RUN apt-get update && apt-get install -y --no-install-recommends libssl-dev curl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends libssl-dev curl perl && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /usr/local/bin/h2o /usr/local/bin/h2o
 COPY --from=builder /usr/local/share/h2o/ /usr/local/share/h2o/
 
