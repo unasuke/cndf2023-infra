@@ -1,0 +1,29 @@
+# see also https://github.com/unasuke/h2o-docker ;)
+FROM docker.io/library/buildpack-deps:bookworm as builder
+
+RUN apt-get update && apt-get install -y --no-install-recommends cmake bison ruby
+WORKDIR /etc
+RUN git clone --recurse-submodules https://github.com/h2o/h2o.git --depth 1 --branch master
+
+WORKDIR /etc/h2o
+RUN mkdir -p build
+WORKDIR /etc/h2o/build
+RUN cmake -DWITH_MRUBY=on ..
+RUN make
+RUN make install
+
+FROM debian:bookworm
+RUN apt-get update && apt-get install -y --no-install-recommends libssl-dev curl && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /usr/local/bin/h2o /usr/local/bin/h2o
+COPY --from=builder /usr/local/share/h2o/ /usr/local/share/h2o/
+
+# copy certificates
+COPY certificate/* /etc/certs/
+
+# generate chained certificate
+RUN cat /etc/certs/cndf2023.unasuke.dev.crt /etc/certs/cndf2023.unasuke.dev.issuer.crt > /etc/certs/cndf2023.unasuke.dev.chained.crt
+
+USER nobody
+
+COPY website/build /data/www
+

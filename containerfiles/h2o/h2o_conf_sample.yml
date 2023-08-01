@@ -1,0 +1,12 @@
+host:
+  cndf2023.unasuke.dev:
+    listen:
+      port: 443
+      ssl:
+        certificate-file: /etc/certs/cndf2023.unasuke.dev.chained.crt
+        key-file: /etc/certs/cndf2023.unasuke.dev.key
+        minimum-version: TLSv1.3
+      type: quic
+    paths:
+      "/":
+        file.dir: /data/www

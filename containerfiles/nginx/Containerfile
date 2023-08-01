@@ -1,0 +1,9 @@
+FROM docker.io/library/nginx:1.25.1-bookworm
+
+# copy certificates
+COPY certificate/* /etc/certs/
+
+# generate chained certificate
+RUN cat /etc/certs/cndf2023.unasuke.dev.crt /etc/certs/cndf2023.unasuke.dev.issuer.crt > /etc/certs/cndf2023.unasuke.dev.chained.crt
+
+COPY website/build /data/www
