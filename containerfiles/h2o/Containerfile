@@ -23,7 +23,5 @@ COPY certificate/* /etc/certs/
 # generate chained certificate
 RUN cat /etc/certs/cndf2023.unasuke.dev.crt /etc/certs/cndf2023.unasuke.dev.issuer.crt > /etc/certs/cndf2023.unasuke.dev.chained.crt
 
-USER nobody
-
 COPY website/build /data/www
 
