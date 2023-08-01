@@ -1,0 +1,6 @@
+# see containerfile/README.md and Rakefile
+FROM cndf2023-h2o-base:latest
+
+COPY tf/aws_nlb_fargate/h2o/cndf2023.yml /etc/h2o/cndf2023.yml
+
+CMD ["/usr/local/bin/h2o", "--conf", "/etc/h2o/cndf2023.yml", "--mode", "master"]

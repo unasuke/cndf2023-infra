@@ -1,0 +1,37 @@
+hosts:
+  "aws-nlb-fargate-h2o.cndf2023.unasuke.dev:80":
+    listen:
+      port: 80
+    paths:
+      "/health":
+        mruby.handler: |
+          Proc.new do |env|
+            [200, {'content-type' => 'text/plain'}, ["ok\n"]]
+          end
+      "/":
+        redirect: "https://aws-nlb-fargate-h2o.cndf2023.unasuke.dev/"
+  "aws-nlb-fargate-h2o.cndf2023.unasuke.dev:443":
+    listen:
+      port: 443
+      ssl:
+        certificate-file: /etc/certs/cndf2023.unasuke.dev.chained.crt
+        key-file: /etc/certs/cndf2023.unasuke.dev.key
+        minimum-version: TLSv1.3
+    paths:
+      "/":
+        file.dir: /data/www
+    header.add: "Alt-Svc: h3=\":9443\";ma=300,quic=\":9443\";ma=300;"
+  "aws-nlb-fargate-h2o.cndf2023.unasuke.dev:9443":
+    listen:
+      port: 9443
+      ssl:
+        certificate-file: /etc/certs/cndf2023.unasuke.dev.chained.crt
+        key-file: /etc/certs/cndf2023.unasuke.dev.key
+        minimum-version: TLSv1.3
+      type: quic
+    paths:
+      "/":
+        file.dir: /data/www
+    header.add: "Alt-Svc: h3=\":9443\";ma=300,quic=\":9443\";ma=300;"
+access-log: /dev/stdout
+error-log: /dev/stderr
