@@ -8,7 +8,6 @@ terraform {
 }
 
 locals {
-  # Use single az, this is sample repository.
   # azs = ["ap-northeast-1a", "ap-northeast-1c", "ap-northeast-1d"]
   azs                = ["ap-northeast-1a", "ap-northeast-1c"]
   nginx_servive_name = "cndf2023-cloudfront-fargate-nginx"
