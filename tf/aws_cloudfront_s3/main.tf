@@ -61,6 +61,7 @@ resource "aws_cloudfront_distribution" "cndf2023_s3" {
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
+  comment             = "cndf2023-cloudfront-s3"
 
   aliases = ["aws-cloudfront-s3.cndf2023.unasuke.dev"]
 
