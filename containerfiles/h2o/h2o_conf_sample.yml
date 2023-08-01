@@ -10,3 +10,5 @@ host:
     paths:
       "/":
         file.dir: /data/www
+access-log: /dev/stdout
+error-log: /dev/stderr
