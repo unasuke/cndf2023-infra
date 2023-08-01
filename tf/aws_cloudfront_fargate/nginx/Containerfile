@@ -1,0 +1,4 @@
+# see containerfile/README.md and Rakefile
+FROM cndf2023-nginx-base:latest
+
+COPY tf/aws_cloudfront_fargate/nginx/cndf2023.conf /etc/nginx/conf.d/default.conf
