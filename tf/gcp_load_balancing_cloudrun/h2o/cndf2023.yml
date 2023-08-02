@@ -1,0 +1,14 @@
+hosts:
+  "gcp-lb-cloudrun-h2o.cndf2023.unasuke.dev:80":
+    listen:
+      port: 80
+    paths:
+      "/health":
+        mruby.handler: |
+          Proc.new do |env|
+            [200, {'content-type' => 'text/plain'}, ["ok\n"]]
+          end
+      "/":
+        file.dir: /data/www
+access-log: /dev/stdout
+error-log: /dev/stderr
