@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "cndf2023_website_bucket_policy" {
     resources = ["${aws_s3_bucket.cndf2023_website_bucket.arn}/*"]
     condition {
       test     = "StringEquals"
-      values   = [aws_cloudfront_distribution.cndf2023_s3.arn]
+      values   = [aws_cloudfront_distribution.cndf2023_s3.arn, aws_cloudfront_distribution.cndf2023_s3_http2.arn]
       variable = "aws:SourceArn"
     }
   }
@@ -98,4 +98,41 @@ resource "aws_cloudfront_origin_access_control" "cndf2023_bucket_origin_access_c
 
 data "aws_cloudfront_cache_policy" "managed_cachingoptimized" {
   name = "Managed-CachingOptimized"
+}
+
+resource "aws_cloudfront_distribution" "cndf2023_s3_http2" {
+  origin {
+    domain_name              = aws_s3_bucket.cndf2023_website_bucket.bucket_regional_domain_name
+    origin_access_control_id = aws_cloudfront_origin_access_control.cndf2023_bucket_origin_access_control.id
+    origin_id                = aws_s3_bucket.cndf2023_website_bucket.arn
+  }
+
+  enabled             = true
+  is_ipv6_enabled     = true
+  default_root_object = "index.html"
+  comment             = "cndf2023-cloudfront-s3-http2"
+
+  aliases = ["aws-cloudfront-s3-http2.cndf2023.unasuke.dev"]
+
+  default_cache_behavior {
+    cache_policy_id        = data.aws_cloudfront_cache_policy.managed_cachingoptimized.id
+    allowed_methods        = ["HEAD", "GET"]
+    cached_methods         = ["HEAD", "GET"]
+    target_origin_id       = aws_s3_bucket.cndf2023_website_bucket.arn
+    viewer_protocol_policy = "redirect-to-https"
+  }
+
+  http_version = "http2"
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
+  viewer_certificate {
+    acm_certificate_arn      = data.aws_acm_certificate.wildcard_cndf2023_unasuke_dev.arn
+    minimum_protocol_version = "TLSv1.2_2021"
+    ssl_support_method       = "sni-only"
+  }
 }
