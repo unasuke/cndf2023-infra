@@ -39,6 +39,17 @@ namespace :build do
       sh "#{DOCKER} tag cndf2023-nlb-fargate-h2o:latest #{ENV["AWS_ACCOUNT_ID"]}.dkr.ecr.ap-northeast-1.amazonaws.com/cndf2023-nlb-fargate-h2o:latest"
     end
   end
+  namespace :gcp_lb_cloudrun do
+    desc "Build nginx image for Cloud Load Balancing and Cloud Run"
+    task nginx: ["base:nginx"] do
+      sh "#{DOCKER} build --tag asia-northeast1-docker.pkg.dev/cndf2023-http3/cndf2023-lb-cloudrun/nginx:latest --file tf/gcp_load_balancing_cloudrun/nginx/Containerfile ."
+    end
+
+    desc "Build h2o image for Cloud Load Balancing and Cloud Run"
+    task h2o: ["base:h2o"] do
+      sh "#{DOCKER} build --tag asia-northeast1-docker.pkg.dev/cndf2023-http3/cndf2023-lb-cloudrun/h2o:latest --file tf/gcp_load_balancing_cloudrun/h2o/Containerfile ."
+    end
+  end
 end
 
 namespace :push do
@@ -66,6 +77,19 @@ namespace :push do
     task h2o: ["build:aws_nlb_fargate:h2o"] do
       sh "aws ecr get-login-password --region ap-northeast-1 | #{DOCKER} login --username AWS --password-stdin #{ENV["AWS_ACCOUNT_ID"]}.dkr.ecr.ap-northeast-1.amazonaws.com"
       sh "#{DOCKER} push #{ENV["AWS_ACCOUNT_ID"]}.dkr.ecr.ap-northeast-1.amazonaws.com/cndf2023-nlb-fargate-h2o:latest"
+    end
+  end
+  namespace :gcp_lb_cloudrun do
+    desc "Push nginx image for Cloud Load Balancing and Cloud Run"
+    task nginx: ["build:gcp_lb_cloudrun:nginx"] do
+      sh "gcloud auth configure-docker asia-northeast1-docker.pkg.dev"
+      sh "#{DOCKER} push asia-northeast1-docker.pkg.dev/cndf2023-http3/cndf2023-lb-cloudrun/nginx:latest"
+    end
+
+    desc "Push h2o image for Cloud Load Balancing and Cloud Run"
+    task h2o: ["build:gcp_lb_cloudrun:h2o"] do
+      sh "gcloud auth configure-docker asia-northeast1-docker.pkg.dev"
+      sh "#{DOCKER} push asia-northeast1-docker.pkg.dev/cndf2023-http3/cndf2023-lb-cloudrun/h2o:latest"
     end
   end
 end
