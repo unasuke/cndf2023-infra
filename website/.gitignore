@@ -7,3 +7,4 @@ build/
 .firebaserc
 dist/
 node_modules
+.firebase/
