@@ -5,7 +5,8 @@
 Terraform, container, website codes for CNDF2023.
 
 - <https://event.cloudnativedays.jp/cndf2023/talks/1890>
-- TODO: slide URL
+- Slide URL <https://slide.rabbit-shocker.org/authors/unasuke/cndf2023/>
+  * <https://github.com/unasuke/cndf2023>
 
 ## Architectures
 
