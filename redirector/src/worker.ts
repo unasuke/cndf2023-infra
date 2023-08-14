@@ -27,6 +27,7 @@ export interface Env {
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		return new Response('Hello World!');
+		const header = new Headers({ Location: 'https://cndf2023.unasuke.dev' });
+		return new Response('This endpoint has been closed. See cndf2023.unasuke.dev', { status: 301, headers: header });
 	},
 };

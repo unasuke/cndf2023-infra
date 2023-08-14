@@ -1,6 +1,17 @@
-name = "redirector"
+name = "cndf2023-redirector"
 main = "src/worker.ts"
 compatibility_date = "2023-08-07"
+routes = [
+  { pattern = "gcp-lb-cloudrun-h2o.cndf2023.unasuke.dev", custom_domain = true },
+  { pattern = "gcp-lb-cloudrun-nginx.cndf2023.unasuke.dev", custom_domain = true },
+  { pattern = "gcp-lb-storage.cndf2023.unasuke.dev", custom_domain = true },
+  { pattern = "aws-cloudfront-fargate-h2o.cndf2023.unasuke.dev", custom_domain = true },
+  { pattern = "aws-cloudfront-fargate-nginx.cndf2023.unasuke.dev", custom_domain = true },
+  { pattern = "aws-cloudfront-s3.cndf2023.unasuke.dev", custom_domain = true },
+  { pattern = "aws-cloudfront-s3-http2.cndf2023.unasuke.dev", custom_domain = true },
+  { pattern = "aws-nlb-fargate-h2o.cndf2023.unasuke.dev", custom_domain = true },
+  { pattern = "aws-nlb-fargate-nginx.cndf2023.unasuke.dev", custom_domain = true }
+]
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
 # Note: Use secrets to store sensitive data.
