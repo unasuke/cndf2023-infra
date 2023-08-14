@@ -14,41 +14,39 @@ Terraform, container, website codes for CNDF2023.
 
 <https://firebase.cndf2023.unasuke.dev>
 
-### Cloudflare Pages (CloudFront over Cloudflare CDN precisely)
+### Cloudflare Pages
 
 <https://cndf2023.unasuke.dev>
 
-See [`tf/aws_cloudfront_s3`](/tf/aws_cloudfront_s3/) ( See `cndf2023_s3_http1`)
+### AWS CloudFront and S3 static website hosting (stopped)
 
-### AWS CloudFront and S3 static website hosting
-
-<https://aws-cloudfront-s3.cndf2023.unasuke.dev>
+~~https://aws-cloudfront-s3.cndf2023.unasuke.dev~~
 
 See [`tf/aws_cloudfront_s3`](/tf/aws_cloudfront_s3/)
 
-### AWS CloudFront, Application Load balancer and Fargate
+### AWS CloudFront, Application Load balancer and Fargate (stopped)
 
-* <https://aws-cloudfront-fargate-nginx.cndf2023.unasuke.dev>
-* <https://aws-cloudfront-fargate-h2o.cndf2023.unasuke.dev>
+* ~~https://aws-cloudfront-fargate-nginx.cndf2023.unasuke.dev~~
+* ~~https://aws-cloudfront-fargate-h2o.cndf2023.unasuke.dev~~
 
 See [`tf/aws_cloudfront_fargate`](/tf/aws_cloudfront_fargate/)
 
-### AWS Network Load Balancer and Fargate
+### AWS Network Load Balancer and Fargate (stopped)
 
-* <https://aws-nlb-fargate-nginx.cndf2023.unasuke.dev>
-* <https://aws-nlb-fargate-h2o.cndf2023.unasuke.dev>
+* ~~https://aws-nlb-fargate-nginx.cndf2023.unasuke.dev~~
+* ~~https://aws-nlb-fargate-h2o.cndf2023.unasuke.dev~~
 
 See [`tf/aws_nlb_fargate`](/tf/aws_nlb_fargate/)
 
-### Google Cloud Load balancer and Cloud Storage
+### Google Cloud Load balancer and Cloud Storage (stopped)
 
-* <https://gcp-lb-storage.cndf2023.unasuke.dev>
+* ~~https://gcp-lb-storage.cndf2023.unasuke.dev~~
 
 See [`tf/gcp_load_balancing_storage`](/tf/gcp_load_balancing_storage/)
 
-### Google Cloud Load balancer and Cloud Run
+### Google Cloud Load balancer and Cloud Run (stopped)
 
-* <https://gcp-lb-cloudrun-nginx.cndf2023.unasuke.dev/>
-* <https://gcp-lb-cloudrun-h2o.cndf2023.unasuke.dev/>
+* ~~https://gcp-lb-cloudrun-nginx.cndf2023.unasuke.dev~~
+* ~~https://gcp-lb-cloudrun-h2o.cndf2023.unasuke.dev~~
 
 See [`tf/gcp_load_balancing_cloudrun`](/tf/gcp_load_balancing_cloudrun/)
