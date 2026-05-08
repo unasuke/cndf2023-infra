@@ -4,7 +4,7 @@
     "watch": "tailwindcss -i ./source/stylesheets/site.css -o ./dist/stylesheets/site.css --watch"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.2.4",
+    "@tailwindcss/cli": "^4.3.0",
     "firebase-tools": "^15.16.0",
     "tailwindcss": "^4.2.4"
   }
