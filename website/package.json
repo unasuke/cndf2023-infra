@@ -5,7 +5,7 @@
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
-    "firebase-tools": "^15.26.0",
+    "firebase-tools": "^15.27.0",
     "tailwindcss": "^4.3.1"
   }
 }
